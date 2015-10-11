@@ -1,0 +1,78 @@
+<template name="nav">
+    <div class="navbar navbar-default">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">LarpManager</a>
+        </div>
+        <div class="navbar-collapse collapse navbar-responsive-collapse">
+            <ul class="nav navbar-nav">
+                <li id="go_home" class="pointer"><a href="#">Home</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Characters <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        {{#if currentUser}}
+                            {{#if characters}}
+                                <li class="nav-header disabled"><a style="padding-left: 0px;">your characters</a></li>
+                                {{#each characters}}
+                                    <li class="load_character"><a href="#">{{this.name}}</a></li>
+                                {{/each}}
+                            {{/if}}
+                            {{#if blank_sheets}}
+                                <li class="nav-header disabled"><a style="padding-left: 0px;">create new character from template</a></li>
+                                {{#each blank_sheets}}
+                                    <li class="make_pc_from_template"><a href="#">{{this.title}}</a></li>
+                                {{/each}}
+                            {{/if}}
+                        {{else}}
+                            <li class="nav-header disabled"><a style="padding-left: 0px;">please login</a></li>
+                        {{/if}}
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">LARPs <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        {{#if currentUser}}
+                            {{#if is_admin}}
+                                {{#if my_larps_running}}
+                                    <li class="nav-header disabled"><a style="padding-left: 0px;">you run these LARPs</a></li>
+                                    {{#each my_larps_running}}
+                                        <li class="my_larps_running"><a href="#">{{this.title}}</a></li>
+                                    {{/each}}
+                                {{/if}}
+                            {{/if}}
+                            {{#if larps_to_join}}
+                                <li class="nav-header disabled"><a style="padding-left: 0px;">join as a player</a></li>
+                                {{#each larps_to_join}}
+                                    <li class="join_larp"><a href="#">{{this.title}}</a></li>
+                                {{/each}}
+                            {{/if}}
+                            {{#if is_admin}}
+                                {{#if blank_sheets}}
+                                    <li class="nav-header disabled"><a style="padding-left: 0px;">create new LARP with this sheet</a></li>
+                                    {{#each blank_sheets}}
+                                        <li class="make_larp"><a href="#">{{this.title}}</a></li>
+                                    {{/each}}
+                                {{/if}}
+                            {{/if}}
+                            {{#if my_templates}}
+                                <li class="nav-header disabled"><a style="padding-left: 0px;">remove sheet</a></li>
+                                {{#each my_templates}}
+                                    <li class="remove_template"><a href="#">{{this.title}}</a></li>
+                                {{/each}}
+                            {{/if}}
+                            {{#if is_admin}}
+                                <li id="make_template"><a href="#">- create new sheet template -</a></li>
+                            {{/if}}
+                        {{else}}
+                            <li class="nav-header disabled"><a style="padding-left: 0px;">please login</a></li>
+                        {{/if}}
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</template>

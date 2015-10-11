@@ -1,0 +1,19 @@
+<template name="login_area">
+        <div class="row">
+            <span class="col-xs-6">
+                <span class="pull-left">
+                    <span class="small">NETWORK:</span>
+                    {{#if connected}}
+                        <span class="small" style="color:green"> CONNECTED</span>
+                    {{else}}
+                        <span class="small" style="color:red"> DISCONNECTED</span>
+                    {{/if}}
+                </span>
+            </span>
+            <span class="col-xs-6">
+                <span class="pull-right">
+                {{> loginButtons align="right"}}
+            </span>
+            </span>
+        </div>
+</template>

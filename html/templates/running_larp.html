@@ -1,0 +1,166 @@
+<template name="running_larp">
+    <div id="larp_dashboard" class="container">
+        <div class="row">
+            <span class="col-xs-12">
+                <b>{{running_larp.title}}</b><span class="pointer" id="edit_larp"> (edit)</span>
+            </span>
+        </div>
+        <div class="row">
+            <span class="col-xs-12">
+                <hr>
+            </span>
+        </div>
+
+        <!--Basic Location List-->
+        <div class="row">
+            <div class="col-xs-12">
+                <p class="lead">Locations <small class="pointer" id="add_location"> (add)</small></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                {{#if location_data}}
+                    <table class="table table-striped">
+                        <tr>
+                            <th>Location</th><th>Players</th><th>Description</th>
+                        </tr>
+                    {{#each location_data}}
+                        <tr class="pointer expand_location">
+                            <td>{{this.name}}</td><td>{{this.count}}</td><td>{{this.description}}</td>
+                        </tr>
+                    {{/each}}
+                    </table>
+                {{/if}}
+            </div>
+        </div>
+        <div class="row"><span class="col-xs-12"><hr></span></div>
+
+        <!--Location Expanded Information-->
+        {{#if expanded_location_view}}
+            <div class="row">
+                <div class="col-xs-12"><b>{{expanded_location_view.name}}</b></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    Description: 
+                    {{expanded_location_view.description}}
+                    <span id="edit_location_description" class="pointer">(edit)</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">Current Players:</div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    {{#if expanded_location_view.players}}
+                        <table class="table table-striped">
+                            <tr><th>Name</th><th>Actions</th></tr>
+                            {{#each expanded_location_view.players}}
+                            <tr><td>{{this.name}}</td><td>stuff, thing, etc.</td></tr>
+                            {{/each}}
+                        </table>
+                    {{else}}
+                        none
+                    {{/if}}
+                </div>
+            </div>
+            <div class="row"><span class="col-xs-12"><hr></span></div>
+        {{/if}}
+
+
+
+
+
+
+
+
+
+        <!--GM View of a pc sheet-->
+        {{#if gm_view_pc}}
+            <div class="row">
+                <div class="col-xs-12">
+                    <p class="lead">{{gm_view_pc.data.name}} <small class="pointer" id="close_gm_view_pc"> (close)</small></p>
+                </div>
+            </div>
+            {{{gm_view_pc.html}}}
+            <div class="row"><span class="col-xs-12"><hr></span></div>
+        {{/if}}
+
+        <!--Player Management-->
+        <div class="row">
+            <span class="col-xs-12">
+                <p class="lead">Player Management</p>
+            </span>
+        </div>
+        <div id="players" class="row">
+            <div class="col-xs-6 table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Login Name</th>
+                            <th>Accept</th>
+                            <th>Reject</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {{#each running_larp.players.pending}}
+                        <tr>
+                            <td>{{this.name}}</td>
+                            <td><span class="label label-primary player_accept pointer">accept</span></td>
+                            <td><span class="label label-danger player_reject pointer">reject</span></td>
+                        </tr>
+                    {{/each}}
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-xs-6 table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Login Name</th>
+                        <th>Kick</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#each running_larp.players.accepted}}
+                        <tr>
+                            <td>{{this.name}}</td>
+                            <td><span style="color:red" class="player_boot pointer">kick!</span></td>
+                        </tr>
+                    {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row"><span class="col-xs-12"><hr></span></div>
+
+        <!--Message Log-->
+        {{#if all_messages}}
+            <div class="row">
+                <div class="col-xs-12">
+                    <p class="lead">Messages <small>(most recent first)</small></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Location</th>
+                            <th>Message</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {{#each all_messages}}
+                            <tr>
+                                <td>{{this.location}}</td>
+                                <td>{{this.message}}</td>
+                            </tr>
+                        {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        {{/if}}
+    </div>
+</template>

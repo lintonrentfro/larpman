@@ -1,0 +1,33 @@
+
+/*LARP MANAGER CUSTOM CSS*/
+
+
+input[type="text"] {
+    height: 26px;
+}
+.nav > li.disabled.nav-header > a {
+    text-align: left;
+    cursor: none;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.pointer{
+    cursor: pointer;
+}
+.navbar .nav > li > a {
+    text-shadow: none !important;
+}
+.nav-header {
+    padding: 3px 0px;
+    margin: 0px;
+    text-align: left;
+    /*display: inline;*/
+}
+
+
+/*.lm_nav_header {*/
+    /*text-align: left;*/
+    /*text-shadow: 0 0px 0 #FFFFFF;*/
+    /*color: green !important;*/
+/*}*/

@@ -1,0 +1,117 @@
+<template name="sheet">
+    <div class="container" id="sheet_here">
+
+        <!--Sheet, Location, and Message Buttons, Also Links Character to a LARP-->
+        <div class="row">
+            <span class="col-xs-4">
+                <button type="button" id="pc_sheet" class="btn {{sheet}} btn-sm btn-block sheet_nav">Sheet</button>
+            </span>
+            {{#if sheet_larp}}
+            <span class="col-xs-4">
+                    <button type="button" id="pc_locations" class="btn {{locations}} btn-sm btn-block sheet_nav">Locations</button>
+                </span>
+                <span class="col-xs-4">
+                    <button type="button" id="pc_messages" class="btn {{messages}} btn-sm btn-block sheet_nav">Messages/Info</button>
+                </span>
+            {{else}}
+                {{#if set_larp}}
+                    {{> set_larp_template}}
+                {{else}}
+                    <span class="col-xs-8">
+                        <button type="button" id="set_larp" class="btn-warning btn-sm btn-block sheet_nav">Set LARP For This Character</button>
+                    </span>
+                {{/if}}
+            {{/if}}
+        </div>
+        <div class="row"><span class="col-xs-12"><hr></span></div>
+
+        <!--Character Sheet-->
+        {{#if sheet}}
+            {{{pc.html}}}
+            <div class="row">
+                <span class="col-xs-6">
+                    <p><button id="save_pc" class="btn btn-info btn-sm btn-block" type="button">save</button></p>
+                </span>
+                <span class="col-xs-6">
+                    <p><button id="delete_pc" class="btn btn-danger btn-sm btn-block" type="button">delete</button></p>
+                </span>
+            </div>
+        {{/if}}
+
+        <!--Locations-->
+        {{#if locations}}
+            {{#if location_data}}
+            <div class="row">
+                <div class="col-xs-5">
+                    {{#each location_data}}
+                    <p>
+                        <button class="btn btn-xs btn-block set_location">
+                            {{this.name}} ({{this.count}})<br>
+                            <span class="small">{{this.desc}}</span>
+                        </button>
+                    </p>
+                    {{/each}}
+                </div>
+                <div class="col-xs-7">
+                    <div class="well well-small">
+                        {{#if active_loc}}
+                            <b>{{active_loc}}</b><br>
+                        {{/if}}
+                        {{#if sheet_larp}}
+                            <hr>
+                            {{#if location_pcs}}
+                                {{#each location_pcs}}
+                                    <span class="small">{{this.name}}</span><br>
+                                {{/each}}
+                            {{/if}}
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+            {{else}}
+                <div class="row">
+                    <div class="col-xs-12">
+                        <p>No location information available at this time.</p>
+                    </div>
+                </div>
+            {{/if}}
+        {{/if}}
+
+        <!--Messages and LARP Info-->
+        {{#if messages}}
+            {{#if message_data}}
+                <div class="row">
+                    <div class="col-xs-12">
+                        <p class="lead">Messages <small>(most recent first)</small></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Location</th>
+                                    <th>Message</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {{#each message_data}}
+                            <tr>
+                                <td>{{this.location}}</td>
+                                <td>{{this.message}}</td>
+                            </tr>
+                            {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            {{else}}
+                <div class="row">
+                    <div class="col-xs-12">
+                        <p>No message data available at this time.</p>
+                    </div>
+                </div>
+            {{/if}}
+        {{/if}}
+    </div>
+</template>

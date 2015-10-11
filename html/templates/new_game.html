@@ -1,0 +1,35 @@
+<template name="new_game">
+    <div id="new_larp_form" class="container">
+        <div class="row">
+            <h1>New LARP</h1>
+        </div>
+        <div class="row">
+            <div class="well">
+                <form>
+                    <fieldset>
+                        <legend>LARP Information</legend>
+                        <div class="form-group">
+                            <label class="col-xs-2 control-label" for="larp_name">Name</label>
+                            <div class="col-xs-10">
+                                <input id="larp_name" class="col-xs-12" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-xs-2 control-label" for="larp_desc">Description</label>
+                            <div class="col-xs-10">
+                                <textarea id="larp_desc" class="col-xs-12" rows="13"></textarea>
+                                <p class="help-block">This is all you need for now. You'll flesh out the LARP more later.</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-2"></div>
+                            <div class="col-xs-10">
+                                <button id="create_larp" class="btn btn-primary btn-small">Create LARP</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</template>

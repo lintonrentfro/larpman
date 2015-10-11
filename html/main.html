@@ -1,0 +1,32 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LarpManager</title>
+</head>
+<body>
+    <div class="container">
+        {{>nav}}
+        {{>login_area}}
+        <hr>
+    </div>
+    {{#if home}}
+        {{>home}}
+    {{/if}}
+    {{#if currentUser}}
+        {{#if pc}}
+            {{>sheet}}
+        {{/if}}
+        {{#if new_game}}
+            {{>new_game}}
+        {{/if}}
+        {{#if running_larp}}
+            {{>running_larp}}
+        {{/if}}
+        {{#if join_larp}}
+            {{>join_larp}}
+        {{/if}}
+        {{#if make_template}}
+            {{>make_template}}
+        {{/if}}
+    {{/if}}
+</body>

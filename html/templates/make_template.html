@@ -1,0 +1,45 @@
+<template name="make_template">
+    <div class="container">
+        <div class="row">
+            <span class="col-xs-12">
+                <form role="form">
+                    <div class="well well-small">
+                        <div class="form-group">
+                            <label for="sheet_title">Name of This Character Sheet</label>
+                            <input type="text" class="form-control" id="sheet_title" placeholder="e.g. 'Pathfinder 3'">
+                        </div>
+                    </div>
+                    <div class="well well-small">
+                        <div class="form-group">
+                            <label for="field_type">Field Type</label>
+                            <select class="form-control" id="field_type">
+                                {{#each key_value sheet.choices}}
+                                    <option value="{{this.value.form_field_value}}">{{this.value.form_field_visible_description}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="field_title">Field Name</label>
+                            <input type="text" class="form-control" id="field_title" placeholder="title goes here">
+                        </div>
+                        <p>
+                            <button type="submit" id="add_field" class="btn btn-sm btn-primary">Add Field To Sheet</button>
+                        </p>
+                    </div>
+                    <div class="well well-small">
+                        <button type="submit" id="save_working_template" class="btn btn-sm btn-danger">Save Sheet and Exit Editor</button>
+                    </div>
+                </form>
+            </span>
+        </div>
+        <!-- sheet preview -->
+        <div class="row">
+            <span class="col-xs-12">
+                <hr>
+            </span>
+        </div>
+        {{#if template_preview}}
+            {{{template_preview}}}
+        {{/if}}
+    </div>
+</template>
